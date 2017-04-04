@@ -7,4 +7,9 @@ import * as Template from './app.vue'
     mixins: [Template]
 })
 export default class App extends Vue {
+
+    openDialog (ref: string) {
+        this.$refs[ref].open()
+    }
+
 }
