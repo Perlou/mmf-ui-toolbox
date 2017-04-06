@@ -19,6 +19,10 @@ addRoute
     (r) => require.ensure([], () => r(require('components/views/home')['default']), 'home')
 )
 (
+    '/(colorPicker)?', 'colorPicker',
+    (r) => require.ensure([], () => r(require('components/views/colorPicker')['default']), 'colorPicker')
+)
+(
     '*', 'defaultView',
     (r) => require.ensure([], () => r(require('components/views/home')['default']), 'home')
 )
