@@ -1,0 +1,15 @@
+@import "base/base";
+
+.view-color-picker {
+    padding: 20px;
+
+    .picker-input {
+        display: flex;
+
+        .md-button {
+            height: 36px;
+            margin-top: 10px;
+            margin-left: 40px;
+        }
+    }
+}
