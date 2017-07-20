@@ -7,18 +7,97 @@ import Vue from 'app/vueExt'
 import { Component, Watch, Prop } from 'vue-property-decorator'
 import { State, Mutation, Getter, Action} from 'vuex-class'
 import * as Template from './colorPicker.vue'
+import * as Color from 'color'
+
+const arr = [
+    {
+        name: ''
+    }
+]
 
 @Component({
     name: 'ColorPicker',
     mixins: [Template],
-    components: {
-    }
+    components: {}
 })
 export default class ColorPicker extends Vue {
     // 十六进制颜色值的正则表达式
     reg = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/
-
     value = '#20a0ff'
+
+    /**
+     * computed
+     */
+
+    /**
+     * color primary
+     * 
+     * @readonly
+     * @memberof ColorPicker
+     */
+    get primary () {
+        let color = this.getColorObj(this.value)
+        if (!color) return
+
+        return {
+            name: '一级主题色',
+            hex: color.hex()
+        }
+    }
+
+    get baseBlack () {
+        if (!this.primary.hex) return
+        let color = this.getColorObj(this.primary.hex, 6, 33, 18)
+        if (!color) return
+
+        return {
+            name: 'Base Black',
+            hex: color.hex()
+        }
+    }
+
+    get colors () {
+        let primary = this.getColorObj(this.value)
+        if (!primary) return
+        
+        return []
+    }
+    
+    /**
+     * getColor
+     * 
+     * @param hex 
+     * @param h color to h
+     * @param s color to s
+     * @param l color to l
+     */
+    getColorObj (hex: string, h?, s?, l?) {
+        if (!hex || !this.reg.test(hex)) {
+            return false
+        }
+
+        let color = Color(hex).hsl()
+
+        if (h) {
+            color = color.rotate(h)
+        }
+
+        if (s) {
+            color.color[1] = s
+        }
+
+        if (l) {
+            color.color[2] = l
+        }
+
+        return color
+    }
+    
+    numberFixed (num: string | number, fixed: number = 2) {
+        return Number(Number(num).toFixed(fixed))
+    }
+    
+
 
     /**
      * 计算属性
@@ -32,25 +111,7 @@ export default class ColorPicker extends Vue {
         }
     }
 
-    /**
-     * 二级主题色
-     * @param element-ui公式 color(var(--color-primary) s(99%) l(*0.9))
-     */
-    get cSecond () {
-        let color = this.value
-        let cSecondHsl = this.rgbToHsl(this.colorRgb(color))
-        cSecondHsl[1] = Number(cSecondHsl[1]) * 0.99
-        cSecondHsl[2] = Number(cSecondHsl[2]) * 0.9
-        let cSecondRgb = this.hslToRgb(cSecondHsl)
-        console.log(cSecondRgb)
-
-        return {
-            hex: 111,
-            rgb: `rgb(${cSecondRgb[0]}, ${cSecondRgb[1]}, ${cSecondRgb[2]})`,
-            hsl: cSecondHsl
-        }
-    }
-
+    
     /**
      * RGB 颜色转换为 16进制
      */
@@ -186,10 +247,5 @@ export default class ColorPicker extends Vue {
      */
     creatColor () {
 
-    }
-
-
-    created () {
-        console.log()
     }
 }

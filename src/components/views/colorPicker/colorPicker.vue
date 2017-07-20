@@ -13,49 +13,39 @@
                     <md-table-row>
                         <md-table-head>色块 (颜色名称)</md-table-head>
                         <md-table-head>16进制色值</md-table-head>
-                        <md-table-head>rgb</md-table-head>
-                        <md-table-head>hsl</md-table-head>
                     </md-table-row>
                 </md-table-header>
                 <!-- end table header -->
 
                 <!-- table body -->
                 <md-table-body>
-                    <!-- 基础主题色 -->
+                    <!-- 一级主题色 -->
                     <md-table-row>
                         <md-table-cell>
-                            <div class="color-block" :style="{background: cBase.hex}"></div>
-                            <span :style="{color: cBase.hex}">基础主题色</span>
+                            <div 
+                                class="color-block" 
+                                :style="{background: primary.hex}"
+                            ></div>
+                            <span :style="{color: primary.hex}">{{primary.name}}</span>
                         </md-table-cell>
                         <md-table-cell>
-                            {{cBase.hex}}
-                        </md-table-cell>
-                        <md-table-cell>
-                            rgb{{cBase.rgb}}
-                        </md-table-cell>
-                        <md-table-cell>
-                            {{cBase.hsl}}
+                            {{primary.hex}}
                         </md-table-cell>
                     </md-table-row>
-                    <!-- end 基础主题色 -->
+                    <!-- end 一级主题色 -->
 
-                    <!-- 二级主题色 -->
+                    <!-- 一级主题色 -->
                     <md-table-row>
                         <md-table-cell>
-                            <div class="color-block" :style="{background: cSecond.rgb}"></div>
-                            <span :style="{color: cBase.hex}">二级主题色</span>
+                            <div class="color-block" :style="{background: baseBlack.hex}"></div>
+                            <span :style="{color: baseBlack.hex}">{{baseBlack.name}}</span>
                         </md-table-cell>
                         <md-table-cell>
-                            {{cSecond.hex}}
-                        </md-table-cell>
-                        <md-table-cell>
-                            rgb{{cSecond.rgb}}
-                        </md-table-cell>
-                        <md-table-cell>
-                            {{cSecond.hsl}}
+                            {{baseBlack.hex}}
                         </md-table-cell>
                     </md-table-row>
-                    <!-- end 二级主题色 -->
+                    <!-- end 一级主题色 -->
+
                 </md-table-body>
                 <!-- end table body -->
             </md-table>
