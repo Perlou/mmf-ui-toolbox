@@ -14,10 +14,10 @@
                 </md-dialog-content>
 
                 <md-dialog-actions>
-                    <md-button class="md-primary">
+                    <md-button class="md-primary" @click.native="toAuthorGithub">
                         github
                     </md-button>
-                    <md-button class="md-primary">
+                    <md-button class="md-primary" @click.native="closeDialog('authorDialog')">
                         ok
                     </md-button>
                 </md-dialog-actions>
@@ -37,7 +37,7 @@
 
                     <md-menu-content>
                         <md-menu-item id="authorBtn" @click.native="openDialog('authorDialog')">关于作者</md-menu-item>
-                        <md-menu-item>源码地址</md-menu-item>
+                        <md-menu-item @click.native="toCode">源码地址</md-menu-item>
                     </md-menu-content>
                 </md-menu>
             </md-toolbar>

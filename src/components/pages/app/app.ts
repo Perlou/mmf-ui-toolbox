@@ -9,7 +9,19 @@ import * as Template from './app.vue'
 export default class App extends Vue {
 
     openDialog (ref: string) {
-        this.$refs[ref].open()
+        (this.$refs[ref] as any).open()
     }
 
+    closeDialog (ref: string) {
+        (this.$refs[ref] as any).close()
+    }
+
+    toAuthorGithub () {
+        this.closeDialog('authorDialog')
+        window.location.href = 'https://github.com/Perlou'
+    }
+
+    toCode () {
+        window.location.href = 'https://github.com/Perlou/mmf-ui-toolbox'
+    }
 }

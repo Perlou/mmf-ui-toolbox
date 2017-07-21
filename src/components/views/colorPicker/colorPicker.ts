@@ -38,7 +38,32 @@ export default class ColorPicker extends Vue {
         return {
             name: 'Primary',
             color: color,
-            hex: color.hex()
+            hex: color.hex(),
+            components: [
+                'link-hover-color',
+                'checkbox-checked-input-fill',
+                'checkbox-input-border-color-hover',
+                'checkbox-button-checked-fill',
+                'checkbox-button-checked-border-color',
+                'radio-checked-input-border-color',
+                'radio-checked-icon-color',
+                'radio-input-border-color-hover',
+                'radio-button-checked-fill',
+                'radio-button-checked-border-color',
+                'select-input-focus-background',
+                'select-tag-background',
+                'select-option-selected',
+                'select-option-selected-hover',
+                'input-focus-border',
+                'button-primary-border',
+                'button-primary-fill',
+                'switch-on-color',
+                'dialog-close-hover-color',
+                'pagination-hover-fill',
+                'tag-primary',
+                'slider-main-background-color',
+                'datepicker'
+            ]
         }
     }
 
@@ -50,7 +75,19 @@ export default class ColorPicker extends Vue {
         return {
             name: 'Base Black',
             color: color,
-            hex: color.hex()
+            hex: color.hex(),
+            components: [
+                'font-base-color',
+                'checkbox-color',
+                'radio-color',
+                'notification-title-color',
+                'button-default-color',
+                'table-text-color',
+                'popover-title-color',
+                'tooltip-fill',
+                'tooltip-border-color',
+                'collapse-content-color'
+            ]
         }
     }
 
