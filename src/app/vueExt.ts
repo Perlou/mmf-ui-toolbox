@@ -8,6 +8,18 @@ import api from 'app/api'
 import store from 'store'
 import * as deepExtend from 'deep-extend'
 
+// light: 0, 100, 67,
+// dark: 0, 77, 49
+// base-black: 6, 33, 18,
+// light-black: 5, 27, 27
+// extra-light-black: 2, 19, 35
+// base-silver: 3, 16, 58
+// light-silver: 3, 23, 67
+// extra-light-silver: 0, 26, 80
+// base-gray: 0, 28, 86
+// light-gray: 10, 33 ,92,
+// extra-light-gray: 6, 33, 95
+
 export default class VueExt extends Vue {
 
     state = store.state

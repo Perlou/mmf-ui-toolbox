@@ -2,7 +2,7 @@
     <div class="view view-color-picker">
         <div class="picker-input">
             <md-input-container>
-                <label>请输入16进制数值</label>
+                <label>请输入16进制数值(color primary)</label>
                 <md-input v-model="value" maxlength="7"></md-input>
             </md-input-container>
         </div>
@@ -19,7 +19,7 @@
 
                 <!-- table body -->
                 <md-table-body>
-                    <!-- 一级主题色 -->
+                    <!-- primary -->
                     <md-table-row>
                         <md-table-cell>
                             <div 
@@ -32,7 +32,7 @@
                             {{primary.hex}}
                         </md-table-cell>
                     </md-table-row>
-                    <!-- end 一级主题色 -->
+                    <!-- end primary -->
 
                     <!-- 一级主题色 -->
                     <md-table-row>
@@ -45,6 +45,23 @@
                         </md-table-cell>
                     </md-table-row>
                     <!-- end 一级主题色 -->
+
+                    <!-- table row -->
+                    <md-table-row 
+                        v-for="v, k in colors"
+                        :key="k">
+                        <md-table-cell>
+                            <div 
+                                class="color-block" 
+                                :style="{background: v.color}"
+                            ></div>
+                            <span :style="{color: v.color}">{{v.name}}</span>
+                        </md-table-cell>
+                        <md-table-cell>
+                            {{v.color}}
+                        </md-table-cell>
+                    </md-table-row>
+                    <!-- end table row -->
 
                 </md-table-body>
                 <!-- end table body -->

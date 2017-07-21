@@ -9,9 +9,22 @@ import { State, Mutation, Getter, Action} from 'vuex-class'
 import * as Template from './colorPicker.vue'
 import * as Color from 'color'
 
-const arr = [
+const arr: any = [
     {
-        name: ''
+        name: 'Light',
+        createdBy: 'primary',
+        hsl: [0, 100, 67],
+        components: []
+    },
+    {
+        name: 'Dark',
+        createdBy: 'primary',
+        hsl: [0, 77, 49]
+    },
+    {
+        name: 'Light Black',
+        createdBy: 'baseBlack',
+        hsl: [5, 27, 27]
     }
 ]
 
@@ -40,7 +53,7 @@ export default class ColorPicker extends Vue {
         if (!color) return
 
         return {
-            name: '一级主题色',
+            name: 'Primary',
             hex: color.hex()
         }
     }
@@ -57,10 +70,19 @@ export default class ColorPicker extends Vue {
     }
 
     get colors () {
-        let primary = this.getColorObj(this.value)
-        if (!primary) return
+        if (!this.primary || !this.baseBlack) return
+            
+        let colors: any = []
         
-        return []
+        for (let v of arr) {
+            colors.push({
+                name: v.name,
+                color: this.getColorObj(this[v.createdBy].hex, v.hsl[0], v.hsl[1], v.hsl[2]).hex(),
+                components: v.components
+            })
+        }
+
+        return colors
     }
     
     /**
@@ -240,12 +262,5 @@ export default class ColorPicker extends Vue {
         }
 
         return [h, s, l];
-    }
-
-    /**
-     * 生成颜色
-     */
-    creatColor () {
-
     }
 }
