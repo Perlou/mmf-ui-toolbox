@@ -20,45 +20,51 @@
                 <!-- table body -->
                 <md-table-body>
                     <!-- primary -->
-                    <md-table-row>
-                        <md-table-cell>
+                    <md-table-row v-if="primary">
+                        <md-table-cell class="color-block-cell">
                             <div 
                                 class="color-block" 
                                 :style="{background: primary.hex}"
                             ></div>
-                            <span :style="{color: primary.hex}">{{primary.name}}</span>
+                            <span>{{primary.name}}</span>
                         </md-table-cell>
                         <md-table-cell>
-                            {{primary.hex}}
+                            <div>{{primary.hex}}</div>
+                            <div>{{primary.color | rgb}}</div>
+                            <div>{{primary.color | hsl}}</div>
                         </md-table-cell>
                     </md-table-row>
                     <!-- end primary -->
 
-                    <!-- 一级主题色 -->
-                    <md-table-row>
-                        <md-table-cell>
+                    <!-- base black -->
+                    <md-table-row v-if="baseBlack">
+                        <md-table-cell class="color-block-cell">
                             <div class="color-block" :style="{background: baseBlack.hex}"></div>
-                            <span :style="{color: baseBlack.hex}">{{baseBlack.name}}</span>
+                            <span>{{baseBlack.name}}</span>
                         </md-table-cell>
                         <md-table-cell>
-                            {{baseBlack.hex}}
+                            <div>{{baseBlack.hex}}</div>
+                            <div>{{baseBlack.color | rgb}}</div>
+                            <div>{{baseBlack.color | hsl}}</div>
                         </md-table-cell>
                     </md-table-row>
-                    <!-- end 一级主题色 -->
+                    <!-- end base black -->
 
                     <!-- table row -->
                     <md-table-row 
                         v-for="v, k in colors"
                         :key="k">
-                        <md-table-cell>
+                        <md-table-cell class="color-block-cell">
                             <div 
                                 class="color-block" 
-                                :style="{background: v.color}"
+                                :style="{background: v.hex}"
                             ></div>
-                            <span :style="{color: v.color}">{{v.name}}</span>
+                            <span>{{v.name}}</span>
                         </md-table-cell>
                         <md-table-cell>
-                            {{v.color}}
+                            <div>{{v.hex}}</div>
+                            <div>{{v.color | rgb}}</div>
+                            <div>{{v.color | hsl}}</div>
                         </md-table-cell>
                     </md-table-row>
                     <!-- end table row -->

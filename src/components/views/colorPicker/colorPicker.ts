@@ -8,25 +8,7 @@ import { Component, Watch, Prop } from 'vue-property-decorator'
 import { State, Mutation, Getter, Action} from 'vuex-class'
 import * as Template from './colorPicker.vue'
 import * as Color from 'color'
-
-const arr: any = [
-    {
-        name: 'Light',
-        createdBy: 'primary',
-        hsl: [0, 100, 67],
-        components: []
-    },
-    {
-        name: 'Dark',
-        createdBy: 'primary',
-        hsl: [0, 77, 49]
-    },
-    {
-        name: 'Light Black',
-        createdBy: 'baseBlack',
-        hsl: [5, 27, 27]
-    }
-]
+import config from 'common/config'
 
 @Component({
     name: 'ColorPicker',
@@ -36,7 +18,7 @@ const arr: any = [
 export default class ColorPicker extends Vue {
     // 十六进制颜色值的正则表达式
     reg = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/
-    value = '#20a0ff'
+    value = '#20A0FF'
 
     /**
      * computed
@@ -51,20 +33,23 @@ export default class ColorPicker extends Vue {
     get primary () {
         let color = this.getColorObj(this.value)
         if (!color) return
+        color.color[0] = Math.floor(color.color[0])
 
         return {
             name: 'Primary',
+            color: color,
             hex: color.hex()
         }
     }
 
     get baseBlack () {
-        if (!this.primary.hex) return
-        let color = this.getColorObj(this.primary.hex, 6, 33, 18)
+        let color = this.getColorObj(this.value, 6, 33, 18)
         if (!color) return
+        color.color[0] = Math.ceil(color.color[0])
 
         return {
             name: 'Base Black',
+            color: color,
             hex: color.hex()
         }
     }
@@ -74,10 +59,11 @@ export default class ColorPicker extends Vue {
             
         let colors: any = []
         
-        for (let v of arr) {
+        for (let v of config.colorArr) {
             colors.push({
                 name: v.name,
-                color: this.getColorObj(this[v.createdBy].hex, v.hsl[0], v.hsl[1], v.hsl[2]).hex(),
+                color: this.getColorObj(this[v.createdBy].hex, v.hsl[0], v.hsl[1], v.hsl[2]),
+                hex: this.getColorObj(this[v.createdBy].hex, v.hsl[0], v.hsl[1], v.hsl[2]).hex(),
                 components: v.components
             })
         }
@@ -118,21 +104,6 @@ export default class ColorPicker extends Vue {
     numberFixed (num: string | number, fixed: number = 2) {
         return Number(Number(num).toFixed(fixed))
     }
-    
-
-
-    /**
-     * 计算属性
-     */
-    get cBase () {
-        let color = this.value
-        return {
-            hex: color,
-            rgb: this.colorRgb(color),
-            hsl: this.rgbToHsl(this.colorRgb(color))
-        }
-    }
-
     
     /**
      * RGB 颜色转换为 16进制

@@ -10,12 +10,18 @@ import App from 'components/pages/app'
 import router from 'app/router'
 import svgicon = require('vue-svgicon')
 import * as VueMaterial from 'vue-material'
+import filters from 'common/filters'
 
 // import all icons
 import 'components/icons'
 
 // vue-material style
 import 'vue-material/dist/vue-material.css'
+
+// register filters
+for (let filter in filters) {
+    Vue.filter(filter, filters[filter])
+}
 
 Vue.use(svgicon, {
     tagName: 'icon'
