@@ -1,0 +1,44 @@
+@import "base/base";
+
+.view-color-picker {
+    padding: 20px;
+
+    .picker-input {
+        display: flex;
+
+        .md-button {
+            height: 36px;
+            margin-top: 10px;
+            margin-left: 40px;
+        }
+    }
+
+    .input-label {
+        > a {
+            margin-left: 30px;
+            cursor: pointer;
+        }
+    }
+
+    .color-block-cell {
+        width: 100px;
+    }
+
+    .color-args-cell {
+        width: 200px;
+    }
+
+    .color-components-cell {
+        padding: 12px 20px;
+
+        span {
+            margin-right: 8px;
+            line-height: 22px;
+        }
+    }
+
+    .color-block {
+        width: 80px;
+        height: 50px;
+    }
+}

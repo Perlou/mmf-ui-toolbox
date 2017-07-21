@@ -1,0 +1,13 @@
+@import "base/base";
+
+#app {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+#layout-main {
+    height: calc(100vh - 64px);
+    overflow: auto;
+}
