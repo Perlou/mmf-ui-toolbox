@@ -17,6 +17,7 @@
     "deep-extend": "^0.4.1",
     "element-theme-default": "^1.2.7",
     "normalize.css": "^5.0.0",
+    "particles.js": "^2.0.0",
     "qs": "^6.4.0",
     "vue": "^2.2.1",
     "vue-material": "^0.7.1",

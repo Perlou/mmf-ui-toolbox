@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <background></background>
         <!-- header -->
         <div id="layout-header">
             <md-dialog md-open-from="authorBtn" md-close-to="#authorBtn" ref="authorDialog">

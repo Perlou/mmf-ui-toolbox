@@ -1,10 +1,14 @@
 import Vue from 'app/vueExt'
 import { Component } from 'vue-property-decorator'
 import * as Template from './app.vue'
+import Background from 'components/tags/background'
 
 @Component({
     name: 'App',
-    mixins: [Template]
+    mixins: [Template],
+    components: {
+        Background
+    }
 })
 export default class App extends Vue {
 
