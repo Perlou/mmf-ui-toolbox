@@ -18,7 +18,7 @@ import config from 'common/config'
 export default class ColorPicker extends Vue {
     // 十六进制颜色值的正则表达式
     reg = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/
-    value = '#20A0FF'
+    value = '#2E9FFF'
 
     /**
      * computed
@@ -26,14 +26,15 @@ export default class ColorPicker extends Vue {
 
     /**
      * color primary
-     * 
+     *
      * @readonly
      * @memberof ColorPicker
      */
     get primary () {
         let color = this.getColorObj(this.value)
         if (!color) return
-        color.color[0] = Math.floor(color.color[0])
+        // color.color[0] = this.numberFixed(color.color[0])
+        // console.log(color.color[0])
 
         return {
             name: 'Primary',
@@ -70,7 +71,7 @@ export default class ColorPicker extends Vue {
     get baseBlack () {
         let color = this.getColorObj(this.value, 6, 33, 18)
         if (!color) return
-        color.color[0] = Math.ceil(color.color[0])
+        // color.color[0] = Math.ceil(color.color[0])
 
         return {
             name: 'Base Black',
@@ -93,9 +94,9 @@ export default class ColorPicker extends Vue {
 
     get colors () {
         if (!this.primary || !this.baseBlack) return
-            
+
         let colors: any = []
-        
+
         for (let v of config.colorArr) {
             colors.push({
                 name: v.name,
@@ -107,11 +108,11 @@ export default class ColorPicker extends Vue {
 
         return colors
     }
-    
+
     /**
      * getColor
-     * 
-     * @param hex 
+     *
+     * @param hex
      * @param h color to h
      * @param s color to s
      * @param l color to l
@@ -137,11 +138,11 @@ export default class ColorPicker extends Vue {
 
         return color
     }
-    
+
     numberFixed (num: string | number, fixed: number = 2) {
         return Number(Number(num).toFixed(fixed))
     }
-    
+
     /**
      * RGB 颜色转换为 16进制
      */
@@ -166,7 +167,7 @@ export default class ColorPicker extends Vue {
             return strHex
         } else if (this.reg.test(res)) {
             let aNum = res.replace(/#/,'').split('')
-            
+
             if (aNum.length == 6) {
                 return res
             } else if (aNum.length == 3) {
@@ -175,7 +176,7 @@ export default class ColorPicker extends Vue {
                 for (let i = 0; i < aNum.length; i++) {
                     numHex += (aNum[i] + aNum[i])
                 }
-                
+
                 return numHex
             } else {
                 return res
@@ -218,7 +219,7 @@ export default class ColorPicker extends Vue {
      * hsl to rgb
      */
     hslToRgb (hsl) {
-        let r, g, b 
+        let r, g, b
         let h = hsl[0]
         let s = hsl[1]
         let l = hsl[2]
@@ -257,7 +258,7 @@ export default class ColorPicker extends Vue {
         let h, s, l = (max + min) / 2
 
         if(max == min){
-            h = s = 0 
+            h = s = 0
         }else{
             let d = max - min
             s = l > 0.5 ? d / (2 - max - min) : d / (max + min)

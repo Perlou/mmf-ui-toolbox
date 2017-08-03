@@ -17,7 +17,7 @@
                 <md-table-header>
                     <md-table-row>
                         <md-table-head>色块 (颜色名称)</md-table-head>
-                        <md-table-head>16进制色值</md-table-head>
+                        <md-table-head>hex/rgb/hsl</md-table-head>
                         <md-table-head>相关element-ui组件</md-table-head>
                     </md-table-row>
                 </md-table-header>
