@@ -18,7 +18,7 @@ import config from 'common/config'
 export default class ColorPicker extends Vue {
     // 十六进制颜色值的正则表达式
     reg = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/
-    value = '#2E9FFF'
+    value = '#20A0FF'
 
     /**
      * computed
